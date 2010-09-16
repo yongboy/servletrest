@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>测试HTTP各种方法</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script>
+$(function(){
+	$("#get").bind("click",function(e){
+		$.ajax({
+		   type: "GET",
+		   url: "demo/",
+		   data: "name=John&location=Boston",
+		   success: function(msg){
+		     $("#div").html(msg);
+		   }
+		});
+	});
+	$("#post").bind("click",function(e){
+		$.ajax({
+		   type: "POST",
+		   url: "demo/",
+		   data: "name=John&location=Boston",
+		   success: function(msg){
+		     $("#div").html(msg);
+		   }
+		});
+	});
+	$("#delete").bind("click",function(e){
+		$.ajax({
+		   type: "DELETE",
+		   url: "demo/",
+		   data: {"name":"John","location":"Boston"},
+		   success: function(msg){
+		     $("#div").html(msg);
+		   }
+		});
+	});
+	$("#put").bind("click",function(e){
+		$.ajax({
+		   type: "PUT",
+		   url: "demo/",
+		   data: {"name":"John","location":"Boston"},
+		   success: function(msg){
+		     $("#div").html(msg);
+		   }
+		});
+	});
+});
+</script>
+</head>
+<body>
+<div>
+<input type="button" id="get" value="测试GET方法" /><br />
+<input type="button" id="post" value="测试POST方法" /><br />
+<input type="button" id="put" value="测试PUT方法" /><br />
+<input type="button" id="delete" value="测试DELETE方法" /><br />
+<br />
+<div>显示执行结果:</div>
+<div id="div" style="width:500px; height:200px; border:1px green thin;"></div>
+</div>
+</body>
+</html>
