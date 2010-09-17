@@ -1,5 +1,7 @@
 package com.yong.rest;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -8,11 +10,13 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServlet;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
 public abstract class ServletFactory {
-	private static BiMap<String, HttpServlet> servletMap;
+	private static Map<String, HttpServlet> servletMap;
+	
+	private static Multimap<HttpServlet,String> multimap = null;
 
 	/**
 	 * 交由子类实现
@@ -23,9 +27,23 @@ public abstract class ServletFactory {
 	
 	protected void initMap(Map<String, HttpServlet> resultMap){
 		if (resultMap == null) {
-			servletMap = HashBiMap.create();
+			servletMap = new HashMap<String, HttpServlet>();
 		} else {
-			servletMap = HashBiMap.create(resultMap);
+			servletMap = resultMap;
+			
+			multimap = ArrayListMultimap.create();
+			
+			switchMaps();
+		}
+	}
+	
+	private void switchMaps(){
+		if(servletMap == null || servletMap.isEmpty()){
+			return;
+		}
+		
+		for(Map.Entry<String, HttpServlet> entry : servletMap.entrySet()){
+			multimap.put(entry.getValue(), entry.getKey());
 		}
 	}
 
@@ -60,12 +78,12 @@ public abstract class ServletFactory {
 	 * @param servletInstance
 	 * @return
 	 */
-	public String getUrlByServlet(HttpServlet servletInstance) {
+	public Collection<String> getUrlByServlet(HttpServlet servletInstance) {
 		if (servletInstance == null) {
 			return null;
 		}
 
-		return servletMap.inverse().get(servletInstance);
+		return multimap.get(servletInstance);
 	}
 
 	/**
@@ -76,15 +94,23 @@ public abstract class ServletFactory {
 	 */
 	public String[] getUrlParametersByServlet(HttpServlet servletInstance,
 			String oriUrl) {
-		String urls = getUrlByServlet(servletInstance);
+		Collection<String> urls = getUrlByServlet(servletInstance);
 
-		if (urls == null || urls.length() == 0) {
+		if (urls == null || urls.isEmpty()) {
 			return null;
 		}
 
 		// 使用正则表达式提取 参数
 
-		return analyticsParameters(urls, oriUrl);
+		for(String url : urls){
+			String [] paramters =  analyticsParameters(url, oriUrl);
+			
+			if(paramters != null && paramters.length > 0){
+				return paramters;
+			}
+		}
+		
+		return null;
 	}
 
 	/**
@@ -140,7 +166,11 @@ public abstract class ServletFactory {
 			return;
 		}
 
-		servletMap.inverse().remove(servletInstance);
+		Collection<String> urls = getUrlByServlet(servletInstance);
+		
+		for(String url : urls){
+			multimap.remove(servletInstance, url);
+		}
 	}
 	
 	/**
@@ -148,5 +178,7 @@ public abstract class ServletFactory {
 	 */
 	public synchronized void clear(){
 		servletMap.clear();
-	}
+		
+		multimap.clear();
+	}	
 }

@@ -40,5 +40,5 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 public @interface RestSupport {
-	String value();
+	String [] value();
 }

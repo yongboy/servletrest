@@ -27,7 +27,7 @@
     <filter-class>com.yong.rest.RestFilter</filter-class>
     <init-param>
       <param-name>scanPackage</param-name>
-      <param-value>com.yong.test</param-value>
+      <param-value>/servlets.xml</param-value>
     </init-param>    
   </filter>
   <filter-mapping>

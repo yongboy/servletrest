@@ -3,7 +3,6 @@ package com.yong.rest.annotation;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -40,13 +39,14 @@ public class AnnonationHelper {
 				continue;
 			}
 
-			Annotation annotation = c.getAnnotation(RestSupport.class);
+			RestSupport annotation = (RestSupport) c.getAnnotation(RestSupport.class);
 
-			String value = ((RestSupport) annotation).value();
+			String []values = annotation.value();
 
 			try {
-				servletMap.put(value.replaceAll("\\*", "([^\\/]\\*)"),
-						(HttpServlet) c.newInstance());
+				for(String value : values){
+					servletMap.put(value.replaceAll("\\*", "([^\\/]\\*)"), (HttpServlet) c.newInstance());
+				}
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
