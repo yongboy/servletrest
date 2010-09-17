@@ -1,4 +1,4 @@
-package com.yong.test.servlet;
+package com.yong.test.servlet.anno;
 
 import java.io.IOException;
 import java.io.PrintWriter;

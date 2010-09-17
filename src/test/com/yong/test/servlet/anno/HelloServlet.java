@@ -1,4 +1,4 @@
-package com.yong.test.servlet;
+package com.yong.test.servlet.anno;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yong.rest.annotation.RestSupport;
 
-@RestSupport("/person/*")
-public class PersonServlet extends HttpServlet {
+@RestSupport("/hello")
+public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = -153456L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 
-		out.write("Person pages now !");
+		out.write("Hello World! ");
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)

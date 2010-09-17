@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.yong.rest.annotation.AnnotationServletFactoryImpl;
+import com.yong.rest.xml.XmlServletFactoryImpl;
 
 /**
  * 控制转交请求给相应的Servlet
@@ -29,7 +30,11 @@ public class RestFilter implements Filter {
 			throw new NullPointerException();
 		}
 
-		servletFactory = new AnnotationServletFactoryImpl(scanPackage);
+		if(scanPackage.toLowerCase().endsWith(".xml")){
+			servletFactory = new XmlServletFactoryImpl(scanPackage);
+		}else{
+			servletFactory = new AnnotationServletFactoryImpl(scanPackage);
+		}
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse res,
