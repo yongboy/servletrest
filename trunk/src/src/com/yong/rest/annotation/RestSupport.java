@@ -14,25 +14,25 @@ import java.lang.annotation.Target;
  * @author y.nie
  * @date 2010-9-15
  * @version 1.0
-* 	     å…ƒæ³¨è§£@Target,@Retention,@Documented,@Inherited
+* 	     Ôª×¢½â@Target,@Retention,@Documented,@Inherited
 *
-*      @Target è¡¨ç¤ºè¯¥æ³¨è§£ç”¨äºä»€ä¹ˆåœ°æ–¹ï¼Œå¯èƒ½çš„ ElemenetType å‚æ•°åŒ…æ‹¬ï¼š
-*          ElemenetType.CONSTRUCTOR æ„é€ å™¨å£°æ˜
-*          ElemenetType.FIELD åŸŸå£°æ˜ï¼ˆåŒ…æ‹¬ enum å®ä¾‹ï¼‰
-*          ElemenetType.LOCAL_VARIABLE å±€éƒ¨å˜é‡å£°æ˜
-*          ElemenetType.METHOD æ–¹æ³•å£°æ˜
-*          ElemenetType.PACKAGE åŒ…å£°æ˜
-*          ElemenetType.PARAMETER å‚æ•°å£°æ˜
-*          ElemenetType.TYPE ç±»ï¼Œæ¥å£ï¼ˆåŒ…æ‹¬æ³¨è§£ç±»å‹ï¼‰æˆ–enumå£°æ˜
+*      @Target ±íÊ¾¸Ã×¢½âÓÃÓÚÊ²Ã´µØ·½£¬¿ÉÄÜµÄ ElemenetType ²ÎÊı°üÀ¨£º
+*          ElemenetType.CONSTRUCTOR ¹¹ÔìÆ÷ÉùÃ÷
+*          ElemenetType.FIELD ÓòÉùÃ÷£¨°üÀ¨ enum ÊµÀı£©
+*          ElemenetType.LOCAL_VARIABLE ¾Ö²¿±äÁ¿ÉùÃ÷
+*          ElemenetType.METHOD ·½·¨ÉùÃ÷
+*          ElemenetType.PACKAGE °üÉùÃ÷
+*          ElemenetType.PARAMETER ²ÎÊıÉùÃ÷
+*          ElemenetType.TYPE Àà£¬½Ó¿Ú£¨°üÀ¨×¢½âÀàĞÍ£©»òenumÉùÃ÷
 *         
-*      @Retention è¡¨ç¤ºåœ¨ä»€ä¹ˆçº§åˆ«ä¿å­˜è¯¥æ³¨è§£ä¿¡æ¯ã€‚å¯é€‰çš„ RetentionPolicy å‚æ•°åŒ…æ‹¬ï¼š
-*          RetentionPolicy.SOURCE æ³¨è§£å°†è¢«ç¼–è¯‘å™¨ä¸¢å¼ƒ
-*          RetentionPolicy.CLASS æ³¨è§£åœ¨classæ–‡ä»¶ä¸­å¯ç”¨ï¼Œä½†ä¼šè¢«VMä¸¢å¼ƒ
-*          RetentionPolicy.RUNTIME VMå°†åœ¨è¿è¡ŒæœŸä¹Ÿä¿ç•™æ³¨é‡Šï¼Œå› æ­¤å¯ä»¥é€šè¿‡åå°„æœºåˆ¶è¯»å–æ³¨è§£çš„ä¿¡æ¯ã€‚
+*      @Retention ±íÊ¾ÔÚÊ²Ã´¼¶±ğ±£´æ¸Ã×¢½âĞÅÏ¢¡£¿ÉÑ¡µÄ RetentionPolicy ²ÎÊı°üÀ¨£º
+*          RetentionPolicy.SOURCE ×¢½â½«±»±àÒëÆ÷¶ªÆú
+*          RetentionPolicy.CLASS ×¢½âÔÚclassÎÄ¼şÖĞ¿ÉÓÃ£¬µ«»á±»VM¶ªÆú
+*          RetentionPolicy.RUNTIME VM½«ÔÚÔËĞĞÆÚÒ²±£Áô×¢ÊÍ£¬Òò´Ë¿ÉÒÔÍ¨¹ı·´Éä»úÖÆ¶ÁÈ¡×¢½âµÄĞÅÏ¢¡£
 *         
-*      @Documented å°†æ­¤æ³¨è§£åŒ…å«åœ¨ javadoc ä¸­
+*      @Documented ½«´Ë×¢½â°üº¬ÔÚ javadoc ÖĞ
 *     
-*      @Inherited å…è®¸å­ç±»ç»§æ‰¿çˆ¶ç±»ä¸­çš„æ³¨è§£
+*      @Inherited ÔÊĞí×ÓÀà¼Ì³Ğ¸¸ÀàÖĞµÄ×¢½â
 */
 
 @Target(ElementType.TYPE)

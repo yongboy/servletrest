@@ -15,13 +15,13 @@ import com.yong.rest.annotation.AnnotationServletFactoryImpl;
 import com.yong.rest.xml.XmlServletFactoryImpl;
 
 /**
- * 鎺у埗杞氦璇锋眰缁欑浉搴旂殑Servlet
+ * 控制转交请求给相应的Servlet
  */
 public class RestFilter implements Filter {
 	private static ServletFactory servletFactory = null;
 
 	/**
-	 * 鍒濆鍖杝ervlet宸ュ巶
+	 * 初始化servlet工厂
 	 */
 	public void init(FilterConfig config) throws ServletException {
 		String scanPackage = config.getInitParameter("scanPackage");

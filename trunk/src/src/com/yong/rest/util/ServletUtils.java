@@ -69,17 +69,17 @@ public class ServletUtils {
 	}
 
 	/**
-	 * æä¾›ä¸€ä¸ªä¸‹è½½çš„å…¬å…±å‡½æ•°
+	 * Ìá¹©Ò»¸öÏÂÔØµÄ¹«¹²º¯Êı
 	 * 
-	 * @param filePath æ–‡ä»¶çš„è®¿é—®è·¯å¾„
-	 * @param fileName è¦æ˜¾ç¤ºçš„æ–‡ä»¶åç§°
+	 * @param filePath ÎÄ¼şµÄ·ÃÎÊÂ·¾¶
+	 * @param fileName ÒªÏÔÊ¾µÄÎÄ¼şÃû³Æ
 	 */
 	public static void downloadFile(String filePath, String fileName,
 			HttpServletResponse response) {
 		try {
 			File file = new File(filePath);
 			InputStream is = new FileInputStream(file);
-			// å¯¹ä¸‹è½½çš„æ–‡ä»¶åç§°è¿›è¡Œç¼–ç ï¼Œé¿å…å‡ºç°ä¸­æ–‡ä¹±ç é—®é¢˜
+			// ¶ÔÏÂÔØµÄÎÄ¼şÃû³Æ½øĞĞ±àÂë£¬±ÜÃâ³öÏÖÖĞÎÄÂÒÂëÎÊÌâ
 			response.setHeader("Content-disposition", "attachment; filename="
 					+ new String(fileName.getBytes("GBK"), "ISO-8859-1"));
 			int len = -1;
@@ -94,7 +94,7 @@ public class ServletUtils {
 			try {
 				response.setContentType("text/html; charset=UTF-8");				
 				Writer out = response.getWriter();
-				out.write("æ‚¨æ‰€è¯·æ±‚çš„æ–‡ä»¶ä¸å­˜åœ¨ï¼");
+				out.write("ÄúËùÇëÇóµÄÎÄ¼ş²»´æÔÚ£¡");
 				out.flush();
 				out.close();
 			} catch (Exception e) {
@@ -107,14 +107,14 @@ public class ServletUtils {
 	}
 	
 	/**
-	 * æŠŠç”¨æˆ·è¯·æ±‚å†…å®¹è½¬å˜ä¸ºæ–‡ä»¶ï¼Œä¿å­˜åœ¨ç£ç›˜ç³»ç»Ÿä¸­
+	 * °ÑÓÃ»§ÇëÇóÄÚÈİ×ª±äÎªÎÄ¼ş£¬±£´æÔÚ´ÅÅÌÏµÍ³ÖĞ
 	 * 
 	 * @param request
 	 * @param response
 	 * @param fileSavePath
-	 *            è¦ä¿å­˜ä¸ºæ–‡ä»¶çš„è·¯å¾„ï¼Œegï¼šc:/da/ht.htm
+	 *            Òª±£´æÎªÎÄ¼şµÄÂ·¾¶£¬eg£ºc:/da/ht.htm
 	 * @param dispatcherPath
-	 *            å½“å‰Servletå¯¹åº”çš„RequestDispatcherè½¬å‘è·¯å¾„
+	 *            µ±Ç°Servlet¶ÔÓ¦µÄRequestDispatcher×ªÏòÂ·¾¶
 	 * @throws ServletException
 	 * @throws IOException
 	 */
@@ -132,7 +132,7 @@ public class ServletUtils {
 			}
 		};
 
-		// è¿™é‡Œç¼–ç éœ€è¦è‡ªè¡Œä¿®æ”¹æˆéœ€è¦ç¼–ç 
+		// ÕâÀï±àÂëĞèÒª×ÔĞĞĞŞ¸Ä³ÉĞèÒª±àÂë
 		final PrintWriter pw = new PrintWriter(new OutputStreamWriter(os,"UTF-8"));
 		HttpServletResponse rep = new HttpServletResponseWrapper(response) {
 			public ServletOutputStream getOutputStream() {
@@ -149,7 +149,7 @@ public class ServletUtils {
 		pw.flush();		
 		pw.close();
 		
-		// æŠŠjspè¾“å‡ºçš„å†…å®¹å†™åˆ°æŒ‡å®šè·¯å¾„çš„htmæ–‡ä»¶ä¸­
+		// °ÑjspÊä³öµÄÄÚÈİĞ´µ½Ö¸¶¨Â·¾¶µÄhtmÎÄ¼şÖĞ
 		FileOutputStream fos = new FileOutputStream(fileSavePath);
 		os.writeTo(fos);
 		fos.close();

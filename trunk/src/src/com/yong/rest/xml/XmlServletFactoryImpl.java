@@ -10,8 +10,8 @@ import com.yong.rest.ServletFactory;
 import com.yong.rest.exception.XmlFileIllegalException;
 
 /**
- * è¯»å–XMLï¼Œå¡«å……ServletFactoryå·¥ç¨‹æ•°æ®æº
- * 
+ * ¶ÁÈ¡XML£¬Ìî³äServletFactory¹¤³ÌÊı¾İÔ´
+ *
  * @author y.nie
  * @date 2010-9-16
  * @version 1.0
@@ -19,12 +19,24 @@ import com.yong.rest.exception.XmlFileIllegalException;
 public class XmlServletFactoryImpl extends ServletFactory {
 
 	public XmlServletFactoryImpl(String scanPackage) {
+		super(scanPackage);
+
 		if (scanPackage == null || scanPackage.length() == 0) {
-			throw new XmlFileIllegalException("è¦æ‰«æçš„åŒ…è·¯å¾„ä¸èƒ½ä¸ºç©º");
+			throw new XmlFileIllegalException("ÒªÉ¨ÃèµÄ°üÂ·¾¶²»ÄÜÎª¿Õ");
 		}
 
-		// åˆå§‹åŒ–ä¸€äº›å±æ€§
-		this.init(scanPackage);
+		if(scanPackage.indexOf(',') == -1){
+			this.init(scanPackage);
+		}else{
+			String [] xmls = scanPackage.split(",");
+			for(String xml : xmls){
+				if(xml == null || xml.length() == 0){
+					continue;
+				}
+
+				this.init(xml);
+			}
+		}
 	}
 
 	@SuppressWarnings("rawtypes")

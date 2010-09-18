@@ -110,7 +110,7 @@ public class URLConnectionUtil {
 		conn.setRequestMethod(SERVLET_PUT);
 		
 		if (conn.getResponseCode() == 200) {
-			System.out.println("鎴愬姛");
+			System.out.println("成功");
 		} else {
 			System.out.println(conn.getResponseCode());
 		}
@@ -130,7 +130,7 @@ public class URLConnectionUtil {
 		conn.setRequestMethod(SERVLET_DELETE);
 
 		if (conn.getResponseCode() == 200) {
-			System.out.println("鎴愬姛");
+			System.out.println("成功");
 		} else {
 			System.out.println(conn.getResponseCode());
 		}

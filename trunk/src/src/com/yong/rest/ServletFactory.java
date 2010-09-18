@@ -14,42 +14,46 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 public abstract class ServletFactory {
-	private static Map<String, HttpServlet> servletMap;
-	
+	private static Map<String, HttpServlet> servletMap = null;
+
 	private static Multimap<HttpServlet,String> multimap = null;
 
+	public ServletFactory(String path){
+		servletMap = new HashMap<String, HttpServlet>();
+
+		multimap = ArrayListMultimap.create();
+	}
+
 	/**
-	 * äº¤ç”±å­ç±»å®ç°
-	 * 
+	 * ½»ÓÉ×ÓÀàÊµÏÖ
+	 *
 	 * @param path
 	 */
 	protected abstract void init(String path);
-	
+
 	protected void initMap(Map<String, HttpServlet> resultMap){
 		if (resultMap == null) {
-			servletMap = new HashMap<String, HttpServlet>();
-		} else {
-			servletMap = resultMap;
-			
-			multimap = ArrayListMultimap.create();
-			
-			switchMaps();
-		}
-	}
-	
-	private void switchMaps(){
-		if(servletMap == null || servletMap.isEmpty()){
 			return;
 		}
-		
-		for(Map.Entry<String, HttpServlet> entry : servletMap.entrySet()){
+
+		servletMap.putAll(resultMap);
+
+		switchMaps(resultMap);
+	}
+
+	private void switchMaps(Map<String, HttpServlet> resultMap){
+		if(resultMap == null || resultMap.isEmpty()){
+			return;
+		}
+
+		for(Map.Entry<String, HttpServlet> entry : resultMap.entrySet()){
 			multimap.put(entry.getValue(), entry.getKey());
 		}
 	}
 
 	/**
-	 * ä¼ å…¥urlåœ°å€ï¼Œè·å–å¯¹åº”çš„servletå®ä¾‹
-	 * 
+	 * ´«ÈëurlµØÖ·£¬»ñÈ¡¶ÔÓ¦µÄservletÊµÀı
+	 *
 	 * @param oriUrl
 	 * @return
 	 */
@@ -73,8 +77,8 @@ public abstract class ServletFactory {
 	}
 
 	/**
-	 * ä¼ å…¥servletå®ä¾‹ï¼Œè·å–å¯¹åº”çš„url
-	 * 
+	 * ´«ÈëservletÊµÀı£¬»ñÈ¡¶ÔÓ¦µÄurl
+	 *
 	 * @param servletInstance
 	 * @return
 	 */
@@ -87,8 +91,8 @@ public abstract class ServletFactory {
 	}
 
 	/**
-	 * ä¼ å…¥servletå®ä¾‹ï¼Œè·å–å‚æ•°æ•°ç»„
-	 * 
+	 * ´«ÈëservletÊµÀı£¬»ñÈ¡²ÎÊıÊı×é
+	 *
 	 * @param servletInstance
 	 * @return
 	 */
@@ -100,21 +104,21 @@ public abstract class ServletFactory {
 			return null;
 		}
 
-		// ä½¿ç”¨æ­£åˆ™è¡¨è¾¾å¼æå– å‚æ•°
+		// Ê¹ÓÃÕıÔò±í´ïÊ½ÌáÈ¡ ²ÎÊı
 
 		for(String url : urls){
 			String [] paramters =  analyticsParameters(url, oriUrl);
-			
+
 			if(paramters != null && paramters.length > 0){
 				return paramters;
 			}
 		}
-		
+
 		return null;
 	}
 
 	/**
-	 * è·å–urlä¸­å‡ºç°å‚æ•°
+	 * »ñÈ¡urlÖĞ³öÏÖ²ÎÊı
 	 * @param regUrl
 	 * @param oriUrl
 	 * @return
@@ -139,7 +143,7 @@ public abstract class ServletFactory {
 	}
 
 	/**
-	 * åŠ¨æ€æ·»åŠ servletå’Œurlæ˜ å°„å…³ç³»
+	 * ¶¯Ì¬Ìí¼ÓservletºÍurlÓ³Éä¹ØÏµ
 	 * @param url
 	 * @param servletInstance
 	 */
@@ -158,7 +162,7 @@ public abstract class ServletFactory {
 	}
 
 	/**
-	 * åŠ¨æ€åˆ é™¤servletå’Œurlæ˜ å°„å…³ç³»
+	 * ¶¯Ì¬É¾³ıservletºÍurlÓ³Éä¹ØÏµ
 	 * @param servletInstance
 	 */
 	public synchronized void remove(HttpServlet servletInstance) {
@@ -167,18 +171,18 @@ public abstract class ServletFactory {
 		}
 
 		Collection<String> urls = getUrlByServlet(servletInstance);
-		
+
 		for(String url : urls){
 			multimap.remove(servletInstance, url);
 		}
 	}
-	
+
 	/**
-	 * åŠ¨æ€æ¸…ç©ºæ‰€æœ‰servletå’Œurlæ˜ å°„å…³ç³»ç­‰
+	 * ¶¯Ì¬Çå¿ÕËùÓĞservletºÍurlÓ³Éä¹ØÏµµÈ
 	 */
 	public synchronized void clear(){
 		servletMap.clear();
-		
+
 		multimap.clear();
-	}	
+	}
 }

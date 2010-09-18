@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servlets>
+	<servlet>
+		<class>com.yong.test.servlet.xml.UserHomeAction</class>
+		<url>/user/</url>
+	</servlet>
+</servlets>

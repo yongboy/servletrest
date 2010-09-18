@@ -8,8 +8,8 @@ import com.yong.rest.ServletFactory;
 import com.yong.rest.exception.ScanPackageIllegalException;
 
 /**
- * è¯»å–æ³¨è§£ï¼Œå¡«å……ServletFactoryå·¥ç¨‹æ•°æ®æº
- * 
+ * ¶ÁÈ¡×¢½â£¬Ìî³äServletFactory¹¤³ÌÊı¾İÔ´
+ *
  * @author y.nie
  * @date 2010-9-16
  * @version 1.0
@@ -17,12 +17,24 @@ import com.yong.rest.exception.ScanPackageIllegalException;
 public class AnnotationServletFactoryImpl extends ServletFactory {
 
 	public AnnotationServletFactoryImpl(String scanPackage) {
+		super(scanPackage);
+
 		if (scanPackage == null || scanPackage.length() == 0) {
-			throw new ScanPackageIllegalException("è¦æ‰«æçš„åŒ…è·¯å¾„ä¸èƒ½ä¸ºç©º");
+			throw new ScanPackageIllegalException("ÒªÉ¨ÃèµÄ°üÂ·¾¶²»ÄÜÎª¿Õ");
 		}
 
-		// åˆå§‹åŒ–ä¸€äº›å±æ€§
-		this.init(scanPackage);
+		if(scanPackage.indexOf(',') == -1){
+			this.init(scanPackage);
+		}else{
+			String [] packages = scanPackage.split(",");
+			for(String pack : packages){
+				if(pack == null || pack.length() == 0){
+					continue;
+				}
+
+				this.init(pack);
+			}
+		}
 	}
 
 	protected void init(String scanPackage) {

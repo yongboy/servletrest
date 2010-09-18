@@ -15,7 +15,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class SaxParseService extends DefaultHandler {
 	private Map<String, String> hashMap = null;
-	private String preTag = null;// ä½œç”¨æ˜¯è®°å½•è§£ææ—¶çš„ä¸Šä¸€ä¸ªèŠ‚ç‚¹åç§°
+	private String preTag = null;// ×÷ÓÃÊÇ¼ÇÂ¼½âÎöÊ±µÄÉÏÒ»¸ö½ÚµãÃû³Æ
 	private ServletUrl book;
 
 	private static final String SERVLET_NODE = "servlet";
@@ -47,7 +47,7 @@ public class SaxParseService extends DefaultHandler {
 			book = new ServletUrl();
 		}
 
-		preTag = qName;// å°†æ­£åœ¨è§£æçš„èŠ‚ç‚¹åç§°èµ‹ç»™preTag
+		preTag = qName;// ½«ÕıÔÚ½âÎöµÄ½ÚµãÃû³Æ¸³¸øpreTag
 	}
 
 	@Override
@@ -66,11 +66,11 @@ public class SaxParseService extends DefaultHandler {
 
 		preTag = null;
 		/**
-		 * å½“è§£æç»“æŸæ—¶ç½®ä¸ºç©ºã€‚è¿™é‡Œå¾ˆé‡è¦ï¼Œä¾‹å¦‚ï¼Œå½“å›¾ä¸­ç”»3çš„ä½ç½®ç»“æŸåï¼Œä¼šè°ƒç”¨è¿™ä¸ªæ–¹æ³•
-		 * ï¼Œå¦‚æœè¿™é‡Œä¸æŠŠpreTagç½®ä¸ºnullï¼Œæ ¹æ®startElement(....)æ–¹æ³•ï¼ŒpreTagçš„å€¼è¿˜æ˜¯bookï¼Œå½“æ–‡æ¡£é¡ºåºè¯»åˆ°å›¾
-		 * ä¸­æ ‡è®°4çš„ä½ç½®æ—¶ï¼Œä¼šæ‰§è¡Œcharacters(char[] ch, int start, int
-		 * length)è¿™ä¸ªæ–¹æ³•ï¼Œè€Œcharacters(....)æ–¹
-		 * æ³•åˆ¤æ–­preTag!=nullï¼Œä¼šæ‰§è¡Œifåˆ¤æ–­çš„ä»£ç ï¼Œè¿™æ ·å°±ä¼šæŠŠç©ºå€¼èµ‹å€¼ç»™bookï¼Œè¿™ä¸æ˜¯æˆ‘ä»¬æƒ³è¦çš„ã€‚
+		 * µ±½âÎö½áÊøÊ±ÖÃÎª¿Õ¡£ÕâÀïºÜÖØÒª£¬ÀıÈç£¬µ±Í¼ÖĞ»­3µÄÎ»ÖÃ½áÊøºó£¬»áµ÷ÓÃÕâ¸ö·½·¨
+		 * £¬Èç¹ûÕâÀï²»°ÑpreTagÖÃÎªnull£¬¸ù¾İstartElement(....)·½·¨£¬preTagµÄÖµ»¹ÊÇbook£¬µ±ÎÄµµË³Ğò¶Áµ½Í¼
+		 * ÖĞ±ê¼Ç4µÄÎ»ÖÃÊ±£¬»áÖ´ĞĞcharacters(char[] ch, int start, int
+		 * length)Õâ¸ö·½·¨£¬¶øcharacters(....)·½
+		 * ·¨ÅĞ¶ÏpreTag!=null£¬»áÖ´ĞĞifÅĞ¶ÏµÄ´úÂë£¬ÕâÑù¾Í»á°Ñ¿ÕÖµ¸³Öµ¸øbook£¬Õâ²»ÊÇÎÒÃÇÏëÒªµÄ¡£
 		 */
 	}
 
