@@ -25,7 +25,6 @@ public class BookServlet extends HttpServlet {
 
 	protected void doDelete(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("这里请求删除一本书...");
 		PrintWriter out = response.getWriter();
 
 		out.write("we going to delete the book ...");

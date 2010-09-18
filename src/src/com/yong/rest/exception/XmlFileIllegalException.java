@@ -1,7 +1,7 @@
 package com.yong.rest.exception;
 
 /**
- * å®šä¹‰éœ€è¦æ‰«æçš„åŒ…å‡ºç°å¼‚å¸¸
+ * ¶¨ÒåĞèÒªÉ¨ÃèµÄ°ü³öÏÖÒì³£
  * @author y.nie
  * @date 2010-9-16
  * @version 1.0
