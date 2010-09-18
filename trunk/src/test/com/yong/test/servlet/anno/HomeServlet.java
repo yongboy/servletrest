@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yong.rest.annotation.RestSupport;
 
-@RestSupport("/")
+@RestSupport({"/", "/hi", "main"})
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1020520121L;
 

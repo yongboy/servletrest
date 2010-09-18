@@ -10,9 +10,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServlet;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-
 public abstract class ServletFactory {
 	private static MultiHashBidiMap<String, HttpServlet> servletMap = null;
 
