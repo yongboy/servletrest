@@ -14,14 +14,10 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 public abstract class ServletFactory {
-	private static Map<String, HttpServlet> servletMap = null;
-
-	private static Multimap<HttpServlet,String> multimap = null;
+	private static MultiHashBidiMap<String, HttpServlet> servletMap = null;
 
 	public ServletFactory(String path){
-		servletMap = new HashMap<String, HttpServlet>();
-
-		multimap = ArrayListMultimap.create();
+		servletMap = new MultiHashBidiMap<String, HttpServlet>();
 	}
 
 	/**
@@ -37,18 +33,6 @@ public abstract class ServletFactory {
 		}
 
 		servletMap.putAll(resultMap);
-
-		switchMaps(resultMap);
-	}
-
-	private void switchMaps(Map<String, HttpServlet> resultMap){
-		if(resultMap == null || resultMap.isEmpty()){
-			return;
-		}
-
-		for(Map.Entry<String, HttpServlet> entry : resultMap.entrySet()){
-			multimap.put(entry.getValue(), entry.getKey());
-		}
 	}
 
 	/**
@@ -87,7 +71,7 @@ public abstract class ServletFactory {
 			return null;
 		}
 
-		return multimap.get(servletInstance);
+		return servletMap.reverse().get(servletInstance);
 	}
 
 	/**
@@ -156,9 +140,7 @@ public abstract class ServletFactory {
 			return;
 		}
 
-		synchronized (ServletFactory.class) {
-			servletMap.put(url, servletInstance);
-		}
+		servletMap.put(url, servletInstance);
 	}
 
 	/**
@@ -166,15 +148,7 @@ public abstract class ServletFactory {
 	 * @param servletInstance
 	 */
 	public synchronized void remove(HttpServlet servletInstance) {
-		if (servletInstance == null) {
-			return;
-		}
-
-		Collection<String> urls = getUrlByServlet(servletInstance);
-
-		for(String url : urls){
-			multimap.remove(servletInstance, url);
-		}
+		servletMap.remove(servletInstance);
 	}
 
 	/**
@@ -182,7 +156,5 @@ public abstract class ServletFactory {
 	 */
 	public synchronized void clear(){
 		servletMap.clear();
-
-		multimap.clear();
 	}
 }
