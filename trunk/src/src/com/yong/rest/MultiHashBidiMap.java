@@ -58,13 +58,54 @@ public class MultiHashBidiMap<K,V> implements Map<K,V> {
 		return map.put(key, value);
 	}
 
-	public V remove(Object key) {
-		V value = map.remove(key);
-
-		bidiMap.remove(value);
-
-        return value;
+	public V remove(Object value) {
+        return null;
     }
+	
+	public void removeValue(Object value){
+		Set<K> keys = bidiMap.remove(value);
+		
+		if(keys == null || keys.size() == 0){
+			return;
+		}
+		
+		for(K k : keys){
+			map.remove(k);
+		}
+	}
+	
+	public void removeValueByClassPath(String valueClassPath){
+		Set<V> keys = bidiMap.keySet();
+		
+		Iterator<V> iter = keys.iterator();
+		
+		V theV = null;		
+		while(iter.hasNext()){
+			V v = iter.next();
+			
+			if(v.getClass().getName().equals(valueClassPath)){
+				theV = v;
+				break;
+			}
+		}
+		
+		if(theV == null){
+			return;
+		}
+		
+		this.removeValue(theV);
+	}
+	
+	public void removeKey(Object key){
+		V value = map.remove(key);
+		
+		Set<K> keys = bidiMap.get(value);
+		if(keys.size() == 1){
+			bidiMap.remove(value);
+		}else{
+			keys.remove(value);
+		}
+	}
 
 	public void putAll(Map<? extends K, ? extends V> m){
 		if(m == null || m.isEmpty()){
