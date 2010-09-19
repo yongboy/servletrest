@@ -11,7 +11,7 @@
   </welcome-file-list>
   <!--servlet>
     <servlet-name>RestServlet</servlet-name>
-    <servlet-class>com.yong.rest.RestServlet</servlet-class>
+    <servlet-class>com.servlet.rest.RestServlet</servlet-class>
     <init-param>
       <param-name>scanPackage</param-name>
       <param-value>com.yong.test</param-value>
@@ -24,10 +24,10 @@
   </servlet-mapping-->
   <filter>
     <filter-name>RestFilter</filter-name>
-    <filter-class>com.yong.rest.RestFilter</filter-class>
+    <filter-class>com.servlet.rest.RestFilter</filter-class>
     <init-param>
       <param-name>scanPackage</param-name>
-      <param-value>/servlets.xml</param-value>
+      <param-value>/servlets.xml,/servlets2.xml</param-value>
     </init-param>    
   </filter>
   <filter-mapping>
