@@ -134,7 +134,7 @@ public abstract class ServletFactory {
 	 * @param url
 	 * @param servletInstance
 	 */
-	public synchronized void add(String url, HttpServlet servletInstance) {
+	public synchronized void register(String url, HttpServlet servletInstance) {
 		if (url == null || url.length() == 0) {
 			return;
 		}
@@ -150,7 +150,7 @@ public abstract class ServletFactory {
 	 * 动态删除servlet和url映射关系
 	 * @param servletInstance
 	 */
-	public synchronized void remove(HttpServlet servletInstance) {
+	public synchronized void destory(HttpServlet servletInstance) {
 		servletMap.removeValueByClassPath(servletInstance.getClass().getName());
 	}
 	
@@ -158,7 +158,7 @@ public abstract class ServletFactory {
 	 * 动态删除servlet和url映射关系
 	 * @param servletInstance
 	 */
-	public synchronized void remove(String url) {
+	public synchronized void destory(String url) {
 		servletMap.removeKey(url);
 	}
 
