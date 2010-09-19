@@ -16,6 +16,8 @@ import java.util.jar.JarFile;
 
 import javax.servlet.http.HttpServlet;
 
+import com.servlet.rest.RestSupport;
+
 /**
  * 读取RestSupport自定义注解工具
  * 
