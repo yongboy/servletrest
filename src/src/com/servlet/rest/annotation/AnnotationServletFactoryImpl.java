@@ -1,11 +1,11 @@
-package com.yong.rest.annotation;
+package com.servlet.rest.annotation;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 
-import com.yong.rest.ServletFactory;
-import com.yong.rest.exception.ScanPackageIllegalException;
+import com.servlet.rest.ServletFactory;
+import com.servlet.rest.exception.ScanPackageIllegalException;
 
 /**
  * 读取注解，填充ServletFactory工程数据源

@@ -1,4 +1,4 @@
-package com.yong.rest.xml;
+package com.servlet.rest.xml;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -6,8 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 
-import com.yong.rest.ServletFactory;
-import com.yong.rest.exception.XmlFileIllegalException;
+import com.servlet.rest.ServletFactory;
+import com.servlet.rest.exception.XmlFileIllegalException;
 
 /**
  * 读取XML，填充ServletFactory工程数据源

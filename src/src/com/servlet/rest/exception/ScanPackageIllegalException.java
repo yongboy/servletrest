@@ -1,4 +1,4 @@
-package com.yong.rest.exception;
+package com.servlet.rest.exception;
 
 /**
  * 定义需要扫描的包出现的异常

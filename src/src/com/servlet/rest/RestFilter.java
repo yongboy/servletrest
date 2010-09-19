@@ -1,4 +1,4 @@
-package com.yong.rest;
+package com.servlet.rest;
 
 import java.io.IOException;
 
@@ -11,8 +11,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
-import com.yong.rest.annotation.AnnotationServletFactoryImpl;
-import com.yong.rest.xml.XmlServletFactoryImpl;
+import com.servlet.rest.annotation.AnnotationServletFactoryImpl;
+import com.servlet.rest.xml.XmlServletFactoryImpl;
 
 /**
  * 控制转交请求给相应的Servlet

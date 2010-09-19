@@ -1,4 +1,4 @@
-package com.yong.rest.xml;
+package com.servlet.rest.xml;
 
 import java.io.InputStream;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.yong.rest;
+package com.servlet.rest;
 
 import java.util.Collection;
 import java.util.HashMap;
