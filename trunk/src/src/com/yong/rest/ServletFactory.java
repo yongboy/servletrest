@@ -146,12 +146,47 @@ public abstract class ServletFactory {
 	}
 
 	/**
-	 * 动态删除servlet和url映射关系
+	 * 添加servlet和多个URL，注意每一个URL都对应一个单独的servlet实例
+	 * 
+	 * @param urls
+	 * @param servletInstance
+	 */
+	public void register(String[] urls, Class<HttpServlet> servletClass) {
+		if (urls == null || urls.length == 0) {
+			return;
+		}
+
+		if (servletClass == null
+				|| servletClass.getSuperclass() != HttpServlet.class) {
+			return;
+		}
+
+		for (String url : urls) {
+			try {
+				this.register(url, servletClass.newInstance());
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * 动态删除servlet和url映射关系,请请注意，这里是删除一个HttpServlet实例
 	 * 
 	 * @param servletInstance
 	 */
 	public synchronized void destory(HttpServlet servletInstance) {
-		servletMap.removeValueByClassPath(servletInstance.getClass().getName());
+		servletMap.removeValue(servletInstance);
+	}
+	
+	/**
+	 * 这个是删除当前servlet所有对应关系
+	 * @param servletClass
+	 */
+	public synchronized void destory(Class<HttpServlet> servletClass) {
+		servletMap.removeValueByClassPath(servletClass.getName());
 	}
 
 	/**
