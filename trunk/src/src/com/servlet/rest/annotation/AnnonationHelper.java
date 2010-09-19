@@ -1,4 +1,4 @@
-package com.yong.rest.annotation;
+package com.servlet.rest.annotation;
 
 import java.io.File;
 import java.io.FileFilter;
