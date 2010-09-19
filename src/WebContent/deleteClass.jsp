@@ -5,25 +5,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>注册Servlet</title>
+<title>注销Servlet</title>
 </head>
 <body>
 <%
 	String serlvetClass = request.getParameter("class");
 	String mappingUrl = request.getParameter("url");
 	
-	Class servletClass = Class.forName(serlvetClass);
+	Class<HttpServlet> servletClass = (Class<HttpServlet>)Class.forName(serlvetClass);
 	
 	if(servletClass == null){
-		out.println("传入要注册的servlet不存在！");
+		out.println("传入要注销的servlet不存在！");
 	}else if(servletClass.getSuperclass() != javax.servlet.http.HttpServlet.class){
-		out.println("传入要注册的servlet类型不对！");
+		out.println("传入要注销的servlet类型不对！");
 	}else{
-		ServletFactory servletFactory = (ServletFactory)application.getAttribute("servletFactory");
+		ServletFactory servletFactory  = (ServletFactory)application.getAttribute("servletFactory");
 		
-		servletFactory.register(mappingUrl, (HttpServlet)servletClass.newInstance());
+		servletFactory.destory(servletClass);
 		
-		out.println("注册成功，访问吧:<br/><a href='" + (mappingUrl.startsWith("/") ? mappingUrl.substring(1) : mappingUrl) + "'>" + mappingUrl + "</a>");
+		out.println("注销成功 !");
 	}
 %>
 </body>
