@@ -79,27 +79,26 @@ public class MultiHashBidiMap<K,V> implements Map<K,V> {
 		
 		Iterator<V> iter = keys.iterator();
 		
-		V theV = null;		
 		while(iter.hasNext()){
 			V v = iter.next();
 			
 			if(v.getClass().getName().equals(valueClassPath)){
-				theV = v;
-				break;
+				this.removeValue(v);
+
+				continue;
 			}
 		}
-		
-		if(theV == null){
-			return;
-		}
-		
-		this.removeValue(theV);
 	}
 	
 	public void removeKey(Object key){
 		V value = map.remove(key);
 		
 		Set<K> keys = bidiMap.get(value);
+		
+		if(keys == null || keys.isEmpty()){
+			return;
+		}
+		
 		if(keys.size() == 1){
 			bidiMap.remove(value);
 		}else{
