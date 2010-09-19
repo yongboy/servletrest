@@ -16,15 +16,22 @@ import java.util.jar.JarFile;
 
 import javax.servlet.http.HttpServlet;
 
-
+/**
+ * 读取RestSupport自定义注解工具
+ * 
+ * @author yong
+ * @date 2010-9-19
+ * @version 1.0
+ */
 public class AnnonationHelper {
-	
+
 	/**
 	 * 从设定包中获取所有的Class数组
+	 * 
 	 * @param pack
 	 * @return
 	 */
-	@SuppressWarnings("all")	
+	@SuppressWarnings("all")
 	public static Map<String, HttpServlet> readServletClasses(String pack) {
 		Set<Class<?>> classes = getClasses(pack);
 
@@ -39,13 +46,15 @@ public class AnnonationHelper {
 				continue;
 			}
 
-			RestSupport annotation = (RestSupport) c.getAnnotation(RestSupport.class);
+			RestSupport annotation = (RestSupport) c
+					.getAnnotation(RestSupport.class);
 
-			String []values = annotation.value();
+			String[] values = annotation.value();
 
 			try {
-				for(String value : values){
-					servletMap.put(value.replaceAll("\\*", "([^\\/]\\*)"), (HttpServlet) c.newInstance());
+				for (String value : values) {
+					servletMap.put(value.replaceAll("\\*", "([^\\/]\\*)"),
+							(HttpServlet) c.newInstance());
 				}
 			} catch (InstantiationException e) {
 				e.printStackTrace();

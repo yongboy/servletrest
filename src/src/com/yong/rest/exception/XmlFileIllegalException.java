@@ -1,8 +1,9 @@
 package com.yong.rest.exception;
 
 /**
- * 定义需要扫描的包出现异常
- * @author y.nie
+ * 定义需要扫描的XML文件出现的异常
+ * 
+ * @author yong
  * @date 2010-9-16
  * @version 1.0
  */

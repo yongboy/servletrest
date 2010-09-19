@@ -10,7 +10,7 @@ import com.yong.rest.exception.ScanPackageIllegalException;
 /**
  * 读取注解，填充ServletFactory工程数据源
  *
- * @author y.nie
+ * @author yong
  * @date 2010-9-16
  * @version 1.0
  */

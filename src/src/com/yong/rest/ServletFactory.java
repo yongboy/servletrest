@@ -1,7 +1,6 @@
 package com.yong.rest;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -10,6 +9,13 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServlet;
 
+/**
+ * Servlet和URL处理工厂
+ * 
+ * @author yong
+ * @date 2010-9-19
+ * @version 1.0
+ */
 public abstract class ServletFactory {
 	private static MultiHashBidiMap<String, HttpServlet> servletMap = null;
 

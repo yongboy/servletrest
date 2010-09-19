@@ -13,6 +13,13 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * 使用SAX对XML进行解析替代DOM4J或者JDOM，减少包依赖
+ * 
+ * @author yong
+ * @date 2010-9-19
+ * @version 1.0
+ */
 public class SaxParseService extends DefaultHandler {
 	private Map<String, String> hashMap = null;
 	private String preTag = null;// 作用是记录解析时的上一个节点名称
@@ -27,10 +34,6 @@ public class SaxParseService extends DefaultHandler {
 		SAXParser parser = factory.newSAXParser();
 		parser.parse(xmlStream, this);
 
-		return getMap();
-	}
-
-	public Map<String, String> getMap() {
 		return hashMap;
 	}
 
@@ -65,13 +68,6 @@ public class SaxParseService extends DefaultHandler {
 		}
 
 		preTag = null;
-		/**
-		 * 当解析结束时置为空。这里很重要，例如，当图中画3的位置结束后，会调用这个方法
-		 * ，如果这里不把preTag置为null，根据startElement(....)方法，preTag的值还是book，当文档顺序读到图
-		 * 中标记4的位置时，会执行characters(char[] ch, int start, int
-		 * length)这个方法，而characters(....)方
-		 * 法判断preTag!=null，会执行if判断的代码，这样就会把空值赋值给book，这不是我们想要的。
-		 */
 	}
 
 	@Override
@@ -103,7 +99,16 @@ public class SaxParseService extends DefaultHandler {
 	}
 }
 
+/**
+ * 定义一个Servlet和URL对应BEAN,用以记录解析XML内容
+ * @author yong
+ * @date 2010-9-19
+ * @version 1.0
+ */
 class ServletUrl {
+	/**
+	 * servlet class 路径
+	 */
 	private String path;
 	private List<String> urls;
 	

@@ -16,6 +16,10 @@ import com.yong.rest.xml.XmlServletFactoryImpl;
 
 /**
  * 控制转交请求给相应的Servlet
+ * 
+ * @author yong
+ * @date 2010-9-19
+ * @version 1.0
  */
 public class RestFilter implements Filter {
 	private static ServletFactory servletFactory = null;

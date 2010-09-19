@@ -51,7 +51,6 @@ public class XmlServletFactoryImpl extends ServletFactory {
 		}
 
 		if (hashMap == null) {
-			System.out.println("xml is null");
 			return;
 		}
 
