@@ -1,4 +1,4 @@
-package com.servlet.rest.annotation;
+package com.servlet.rest;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
