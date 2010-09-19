@@ -21,7 +21,7 @@
 	}else{
 		ServletFactory servletFactory = (ServletFactory)application.getAttribute("servletFactory");
 		
-		servletFactory.remove(mappingUrl);
+		servletFactory.destory(mappingUrl);
 		out.println("注销成功，访问吧:<br/><a href='" + (mappingUrl.startsWith("/") ? mappingUrl.substring(1) : mappingUrl) + "'>" + mappingUrl + "</a>");
 	}
 %>
