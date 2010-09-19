@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yong.rest.annotation.RestSupport;
+import com.servlet.rest.RestSupport;
 
 @RestSupport("/book/*/*")
 public class BookChapterServlet extends HttpServlet {

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yong.rest.annotation.RestSupport;
+import com.servlet.rest.RestSupport;
 
 @RestSupport("/hello")
 public class HelloServlet extends HttpServlet {

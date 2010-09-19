@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yong.rest.annotation.RestSupport;
+import com.servlet.rest.RestSupport;
 
-@RestSupport("/demo/")
+@RestSupport({"/demo/", "/demo2"})
 public class DemoHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = -153456L;
 
