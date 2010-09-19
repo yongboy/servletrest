@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServlet;
 public abstract class ServletFactory {
 	private static MultiHashBidiMap<String, HttpServlet> servletMap = null;
 
-	public ServletFactory(String path){
+	protected ServletFactory(String path){
 		servletMap = new MultiHashBidiMap<String, HttpServlet>();
 	}
 
@@ -151,7 +151,15 @@ public abstract class ServletFactory {
 	 * @param servletInstance
 	 */
 	public synchronized void remove(HttpServlet servletInstance) {
-		servletMap.remove(servletInstance);
+		servletMap.removeValueByClassPath(servletInstance.getClass().getName());
+	}
+	
+	/**
+	 * 动态删除servlet和url映射关系
+	 * @param servletInstance
+	 */
+	public synchronized void remove(String url) {
+		servletMap.removeKey(url);
 	}
 
 	/**

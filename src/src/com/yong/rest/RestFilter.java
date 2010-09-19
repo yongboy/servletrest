@@ -39,6 +39,9 @@ public class RestFilter implements Filter {
 		}else{
 			servletFactory = new AnnotationServletFactoryImpl(scanPackage);
 		}
+		
+		// 提供外部程序访问servlet工厂入口
+		config.getServletContext().setAttribute("servletFactory", servletFactory);
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse res,
