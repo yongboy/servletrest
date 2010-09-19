@@ -18,17 +18,33 @@
 	Mapping URL: <input type="text" name="url" value="/mycustom"/><br/>
 	<input type="submit" value="注册" />
 </form>
+<br/>
+现在开始注册:<br/>
+对应的Servlet为com.yong.test.servlet.other.CustomServlet,要注册的URL为/mycustom
+<form action="register.jsp" method="post" target="_blank">
+	Servlet Class: <input type="text" name="class" value="com.yong.test.servlet.other.CustomServlet" /><br/>
+	Mapping URL: <input type="text" name="url" value="/mycustom2"/><br/>
+	<input type="submit" value="注册" />
+</form>
 </div>
 <div>
 <br/>
-注销刚才注册的URL和Servlet<br/>
-<form action="delete.jsp" method="post" target="_blank">
+根据Servlet Class注销刚才注册的URL和Servlet<br/>
+<form action="deleteClass.jsp" method="post" target="_blank">
 		Servlet Class: <input type="text" name="class" value="com.yong.test.servlet.other.CustomServlet" /><br/>
-	Mapping URL: <input type="text" name="url" value="/mycustom"/> <br/>
-	备注：<br/>注意URL要填写刚才注册的URL，这里为了测试URL是否已经可以访问，不是必要参数<br/>
-	删除可以根据URL或者servlet<br/>
+		备注: 会删除当前servlet所有对应的URL
 	<input type="submit" value="注销" />
 </form>
+
+
+<br/>
+根据URL注销刚才注册的URL和Servlet<br/>
+<form action="deleteUrl.jsp" method="post" target="_blank">
+	Mapping URL: <input type="text" name="url" value="/mycustom"/> <br/>
+	备注：仅仅可以删除当前URL，即url对应的servlet所对应的其它URL不能够被删除
+	<input type="submit" value="注销" />
+</form>
+<br/>
 </div>
 </body>
 </html>

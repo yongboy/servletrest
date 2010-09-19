@@ -12,7 +12,7 @@
 	String serlvetClass = request.getParameter("class");
 	String mappingUrl = request.getParameter("url");
 	
-	Class servletClass = Class.forName(serlvetClass);
+	Class<HttpServlet> servletClass = (Class<HttpServlet>)Class.forName("com.yong.test.servlet.other.CustomServlet");
 	
 	if(servletClass == null){
 		out.println("传入要注册的servlet不存在！");
@@ -21,9 +21,14 @@
 	}else{
 		ServletFactory servletFactory = (ServletFactory)application.getAttribute("servletFactory");
 		
-		servletFactory.register(mappingUrl, (HttpServlet)servletClass.newInstance());
+		String [] urls = {"/do1", "/do2", "/do3"};
 		
-		out.println("注册成功，访问吧:<br/><a href='" + (mappingUrl.startsWith("/") ? mappingUrl.substring(1) : mappingUrl) + "'>" + mappingUrl + "</a>");
+		servletFactory.register(urls, servletClass);
+		out.println("注册成功，访问吧:<br/>");
+		
+		for(String url : urls){
+			out.println("<a href='" + (mappingUrl.startsWith("/") ? mappingUrl.substring(1) : mappingUrl) + "'>" + mappingUrl + "</a>");
+		}		
 	}
 %>
 </body>
