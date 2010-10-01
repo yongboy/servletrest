@@ -128,21 +128,46 @@ public abstract class ServletFactory {
 	}
 
 	/**
+	 * 动态添加servlet和url映射关系，开放此接口，将为带来隐含的问题，比如需要浪费精力去检查当前实例是否已经存在
+	 * 
+	 * @param url
+	 * @param servletInstance
+	 */
+	private synchronized void register(String url, HttpServlet servletInstance) {
+		if (url == null || url.length() == 0) {
+			return;
+		}
+		
+		if (servletInstance == null) {
+			return;
+		}
+		
+		servletMap.put(url, servletInstance);
+	}
+	
+	/**
 	 * 动态添加servlet和url映射关系
 	 * 
 	 * @param url
 	 * @param servletInstance
 	 */
-	public synchronized void register(String url, HttpServlet servletInstance) {
+	public void register(String url, Class<HttpServlet> servletClass) {
 		if (url == null || url.length() == 0) {
 			return;
 		}
 
-		if (servletInstance == null) {
+		if (servletClass == null
+				|| servletClass.getSuperclass() != HttpServlet.class) {
 			return;
 		}
 
-		servletMap.put(url, servletInstance);
+		try {
+			register(url, servletClass.newInstance());
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -162,13 +187,7 @@ public abstract class ServletFactory {
 		}
 
 		for (String url : urls) {
-			try {
-				this.register(url, servletClass.newInstance());
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
+			register(url, servletClass);
 		}
 	}
 
