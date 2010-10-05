@@ -19,8 +19,7 @@
 	}else if(servletClass.getSuperclass() != javax.servlet.http.HttpServlet.class){
 		out.println("传入要注册的servlet类型不对！");
 	}else{
-		ServletFactory servletFactory = (ServletFactory)application.getAttribute("servletFactory");
-		
+		ServletFactory servletFactory = (ServletFactory)application.getAttribute("servletFactory");		
 		servletFactory.register(mappingUrl, servletClass);
 		
 		// 注销Servlet
